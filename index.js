@@ -17,13 +17,16 @@ async function positiveOrNegative(event) {
             text
         })
     })
-    let data = await response.json()
-    console.log(data);
-    let { result: { polarity, type } } = data
-    console.log(polarity)
-    console.log(type)
     sentimentResult.classList.remove('result-loading')
-    sentimentResult.classList.add('result-display')
-    sentimentResult.classList.add(type)
-    sentimentResult.textContent = `${polarity} ${type}`
+    if(response.ok) {
+        let data = await response.json()
+        let { result: { polarity, type } } = data
+        sentimentResult.classList.add('result-display')
+        sentimentResult.classList.add(type)
+        sentimentResult.textContent = `${polarity} ${type}`
+    } else {
+        sentimentResult.classList.add('negative')
+        sentimentResult.textContent = 'YOUR INPUT IS INVALID'
+        throw new Error('Your input is invalid')
+    }
 }

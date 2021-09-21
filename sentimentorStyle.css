@@ -1,10 +1,45 @@
-.loading {
+body {
+  background: linear-gradient(rgb(0, 189, 25) 40%, black);
+  background-attachment: fixed;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: cornsilk;
+}
+h1 {
+  text-align: center;
+}
+#container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+label {
+  color: cornsilk;
+  font-size: 20px;
+}
+textarea {
+  height: 300px;
+  background-color: cornsilk;
+  font-size: 20px;
+}
+button {
+  background-color: black;
+  color: rgb(0, 189, 25);
+  font-size: 25px;
+}
+#sentimentResult {
+  align-self: center;
+  margin-top: 50px;
+  font-size: 30px;
+}
+.result-loading {
+  margin-top: 10px !important;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid rgb(0, 189, 25);
   width: 120px;
   height: 120px;
-  animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
 }
 @keyframes spin {
   0% {
@@ -13,5 +48,19 @@
   100% {
     transform: rotate(360deg);
   }
+}
+.result-display {
+    border: 1px solid cornsilk;
+    border-radius: 10%;
+    background-color: black;
+}
+.positive { 
+    color: rgb(0, 189, 25);
+}
+.negative {
+    color: rgb(189, 0, 0);
+}
+.neutral {
+    color: gray;
 }
 

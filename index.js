@@ -1,7 +1,10 @@
 'use strict'
+checkSentiment.onclick = positiveOrNegative;
+
 async function positiveOrNegative(event) {
-    result.textContent = ''
-    result.classList.add('loading')
+    sentimentResult.className = ''
+    sentimentResult.textContent = ''
+    sentimentResult.classList.add('result-loading')
     let text = document.getElementsByName('text')[0].value;
     let response = await fetch(`https://sentim-api.herokuapp.com/api/v1/`, {
         method: "POST",
@@ -19,8 +22,8 @@ async function positiveOrNegative(event) {
     let { result: { polarity, type } } = data
     console.log(polarity)
     console.log(type)
-    result.classList.remove('loading')
-    result.textContent = `${polarity} ${type}`
-
+    sentimentResult.classList.remove('result-loading')
+    sentimentResult.classList.add('result-display')
+    sentimentResult.classList.add(type)
+    sentimentResult.textContent = `${polarity} ${type}`
 }
-sendToAPI.onclick = positiveOrNegative;

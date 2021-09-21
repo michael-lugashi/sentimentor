@@ -1,12 +1,19 @@
 'use strict'
 checkSentiment.onclick = positiveOrNegative;
 
-async function positiveOrNegative(event) {
+async function positiveOrNegative() {
+    // clear classes from previous click
     sentimentResult.className = ''
+
+    // added loading animation
     sentimentResult.textContent = ''
     sentimentResult.classList.add('result-loading')
-    let text = document.getElementsByName('text')[0].value;
-    let response = await fetch(`https://sentim-api.herokuapp.com/api/v1/`, {
+
+    // collects text
+    const text = document.getElementsByName('text')[0].value;
+
+    // API fetching data from the server.
+    const response = await fetch(`https://sentim-api.herokuapp.com/api/v1/`, {
         method: "POST",
 
         headers: {
@@ -17,10 +24,15 @@ async function positiveOrNegative(event) {
             text
         })
     })
+
+    // remove loading animation
     sentimentResult.classList.remove('result-loading')
+
+    // if the request is valid the sentiment result will be displayed
+    // else an error will appear
     if(response.ok) {
-        let data = await response.json()
-        let { result: { polarity, type } } = data
+        const data = await response.json()
+        const { result: { polarity, type } } = data
         sentimentResult.classList.add('result-display')
         sentimentResult.classList.add(type)
         sentimentResult.textContent = `${polarity} ${type}`

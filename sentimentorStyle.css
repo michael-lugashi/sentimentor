@@ -63,4 +63,8 @@ button {
 .neutral {
     color: gray;
 }
-
+img {
+    margin-top: 40px;
+    align-self: center;
+    width: 200px;
+}

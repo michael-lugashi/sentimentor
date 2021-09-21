@@ -30,6 +30,7 @@ async function positiveOrNegative() {
 
     // if the request is valid the sentiment result will be displayed
     // else an error will appear
+    catImage.setAttribute('src', `https://http.cat/${response.status}`)
     if(response.ok) {
         const data = await response.json()
         const { result: { polarity, type } } = data
